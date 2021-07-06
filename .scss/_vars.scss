@@ -1,0 +1,67 @@
+
+// Colors
+$color-point: #9254ff; // 주 색상
+$color-point-light: #a587e2;
+$color-font: #000; // 기본 폰트색상
+$color-gray: #b9b9c5; // placeholder
+$color-gray02: #d6d6dd;
+$color-gray03: #63636f;
+$color-gray-light: #f4f4f6;
+
+$dark-mode: #0c0c19; // DARK MODE
+$dark-mode02: #131321;
+
+// Social Account Icon
+$icon-facebook: url(../images/ico-facebook.png) no-repeat center center;
+$icon-google: url(../images/ico-google.png) no-repeat center center;
+$icon-naver: url(../images/ico-naver.png) no-repeat center center;
+$icon-kakao: url(../images/ico-kakao.png) no-repeat center center;
+
+// 기본 폰트 종류
+$font-family: 'Noto Sans KR', 'Malgun Gothic','맑은 고딕','돋움',Dotum,'굴림',Gulim,Tahoma,Verdana,Geneva,sans-serif,Apple Gothic,AppleGothic;
+
+// 기본 폰트 세팅
+@mixin font-set($font-size: 10px, $font-weight: 400, $font-color: $color-font, $font-lineheight: 2rem) {
+    // 기본 폰트설정
+    font-family: $font-family;
+    font-size: $font-size;
+    font-weight: $font-weight;
+    color: $font-color;
+    line-height: $font-lineheight;
+}
+
+// Components Placeholder Color
+@mixin placeholder($ph-color: $color-gray) {
+    $prefixes: (
+        ms: ":",
+        webkit: ":-webkit-input-", // webkit
+        mos: "-mos-", // firefox
+        ie: "-ms-input-"
+    );
+    @each $prop, $value in $prefixes { // $prop (mos, webkit ~), $value (-mos, :webkit-input ~)
+        &:#{$value}placeholder {
+            color : $ph-color;
+        }
+    }
+}
+
+// Input Type Number
+@mixin input-num-style($attribute: none) {
+    $prefixes: (
+        ms: "",
+        webkit: "-webkit-", // webkit
+        ie: "-ms-progress-",
+        moz: "-moz-" // firefox
+    );
+    & {
+        @each $prop, $value in $prefixes {
+            @if $prop == "moz" {
+                #{$value}appearance: textfield;
+            } @else if $prop == "ie" {
+                #{$value}appearance: unset;
+            } @else {
+                #{$value}appearance: none;
+            }
+        }
+    }
+}
